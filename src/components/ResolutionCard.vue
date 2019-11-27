@@ -5,9 +5,11 @@
         <h3>{{resolution.goal}}</h3> 
         <h3>My motivation: {{resolution.motivation}}</h3>
         <button @click="$emit('report-resolution', resolution.id)" class="report-button">Make a Report</button>
-        <button @click="$emit('edit-resolution', resolution.id)" class="edit-resolution-button">Edit Resolution</button>
-        <button @click="$emit('delete-resolution', resolution.id)" class="delete-button">x</button>
-    </section>
+        <br>
+        <br>
+        <font-awesome-icon icon="edit"  @click="$emit('edit-resolution', resolution.id)" class="edit-button" />
+        <font-awesome-icon icon="trash" @click="$emit('delete-resolution', resolution.id)" class="delete-button" />
+</section>
     </div>
 </template>
 
@@ -25,9 +27,9 @@ export default {
 }
 
 .resolution-section{
-    display: flex;
-    justify-content: space-evenly;
-    border: 1px black solid;
+    /* display: flex;
+    justify-content: space-evenly; */
+    border: 3px #474787 solid;
     margin: 25px;
     padding: 15px;
     border-radius: 5px;
@@ -41,14 +43,51 @@ export default {
     border-radius: 5px;
     font-weight: bold;
     font-family: 'Noto Sans SC', sans-serif;
+    width: 300px;
+    padding: 20px;
+    font-size: 25px;
 
 }
 
 .report-button:hover{
-  background-color:white;
+    background-color:white;
     color:#474787;
-     border: 3px #474787 solid;
+    border: 3px #474787 solid;
+    padding: 18px;
 }
+
+.edit-button{
+    margin-left: 1rem;
+    color:#33d9b2;
+    font-size: 20px;
+    cursor: pointer;
+    background-color:white;
+    padding: 9px;
+    border-radius: 50%;
+
+}
+
+.edit-button:hover{
+    background-color:#33d9b2;
+    color: white;
+}
+
+.delete-button{
+    margin-left: 1rem;
+    color:#ff5252;
+    font-size: 20px;
+    cursor: pointer;
+    background-color:white;
+    padding: 9px;
+    border-radius: 50%;
+}
+
+.delete-button:hover{
+    /* background-color:#b33939; */
+    background-color:#ff5252;
+    color:white;
+}
+
 
 
 </style>

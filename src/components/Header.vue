@@ -16,19 +16,17 @@ export default {
         background:white;
         color: #474787;
         text-align: center;
-        padding: 20px;
         font-family: 'Noto Sans SC', sans-serif;
-        font-size: 30px;
-        height: 155px;
-    }
-    .header a{
-        color: #ffff;
-        padding-right: 5px;
-    }
-    .head-line{
-        border: 4px solid #474787;
+        font-size: 50px;
+        margin: -80px;
         padding: 12px;
-        letter-spacing: 2px;
+        
+    }
+  
+    .head-line{
+        /* border: 4px solid #474787; */
+        /* padding: 12px; */
+        letter-spacing: -8px;
         border-radius: 5px;
     }
 </style>
