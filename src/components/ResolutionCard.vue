@@ -2,6 +2,7 @@
     <div class="resolution-card">
     <section class="resolution-section">
         <img class="resolution-image" v-bind:src="resolution.image"/>
+         <h3>{{resolution.realm.realm}}</h3>
         <h3>{{resolution.goal}}</h3> 
         <h3>My motivation: {{resolution.motivation}}</h3>
         <button @click="$emit('report-resolution', resolution.id)" class="report-button">Make a Report</button>
@@ -15,8 +16,7 @@
 
 <script>
 export default {
-    props: ["resolution"]
-    
+    props: ["resolution"],
 }
 </script>
 
