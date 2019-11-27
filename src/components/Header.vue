@@ -19,7 +19,7 @@ export default {
         padding: 20px;
         font-family: 'Noto Sans SC', sans-serif;
         font-size: 30px;
-        height: 220px;
+        height: 155px;
     }
     .header a{
         color: #ffff;
@@ -29,9 +29,6 @@ export default {
         border: 4px solid #474787;
         padding: 12px;
         letter-spacing: 2px;
-    
-    }
-    .sub-head{
-      margin-top: -20px;
+        border-radius: 5px;
     }
 </style>
