@@ -16,10 +16,7 @@
 
 <script>
 export default {
-  props: {
-    addResolution: {
-    type: Function
- }}
+  props: {addResolution: {}}
 }
 </script>
 
