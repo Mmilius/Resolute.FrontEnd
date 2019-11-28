@@ -54,6 +54,7 @@ export default {
     color:#474787;
     border: 3px #474787 solid;
     padding: 18px;
+    cursor: pointer;
 }
 
 .edit-button{

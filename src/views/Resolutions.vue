@@ -100,6 +100,7 @@ form{
     color:#474787;
     border: 3px #474787 solid;
     padding: 0.9rem;
+    cursor: pointer;
   
   }
 }
@@ -123,5 +124,6 @@ form{
     border: 3px #474787 solid;
     border-radius: 5px;
     padding: 2px;
+    cursor: pointer;
 }
 </style>
