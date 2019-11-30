@@ -13,6 +13,9 @@ export default new Vuex.Store({
     },
     addResolution(state, resolution){
       state.resolutions = [resolution, ...state.resolutions]
+    },
+    deleteResolution(state, id){
+      state.resolutions = state.resolutions.splice(id)
     }
   },
   actions: {
@@ -34,7 +37,14 @@ export default new Vuex.Store({
       .then(resolution => {
         commit("addResolution", resolution)
       })
-    }
+    },
+    deleteResolution({ commit }, id){
+      fetch("http://localhost:3000/resolutions/" + id, {
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(id),
+      }).then(commit("deleteResolution", id)
+      )}
   },
   modules: {
   }

@@ -12,10 +12,10 @@
         <input type="submit" class="add-resolution-button" value="Add Resolution"/>
       </form>
       </div>
-        <div v-bind:key="resolution.id" v-for="resolution in resolutions">
-        <ResolutionCard v-bind:resolution="resolution" v-on:del-resolution="emit('del-resolution', resolution.id)"/>
+        <!-- <div v-bind:key="resolution.id" v-for="resolution in resolutions"> -->
+        <ResolutionCard v-bind:key="resolution.id" v-for="(resolution) in resolutions" :resolution="resolution" @deleteResolution="deleteResolution"/>
     </div>
-    </div>
+    <!-- </div> -->
 </template>
 <script>
 
@@ -25,7 +25,7 @@ import ResolutionCard from '../components/ResolutionCard.vue';
 export default {
     data(){
         return{
-            show: false
+            show: false,
         }
     },
     name: "Resolutions",
@@ -53,12 +53,19 @@ export default {
               user_id: formData.get("user_id")
           })
           event.target.reset()
+          window.location.reload()
       },
       toggleForm(){
           this.show !== true
           ? this.show = true
           : this.show = false
+      },
+
+      deleteResolution(id){
+        this.$store.dispatch("deleteResolution", id)
+           window.location.reload()
       }
+      
   },
 }
 </script>
