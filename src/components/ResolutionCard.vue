@@ -1,14 +1,21 @@
 <template>
     <div class="resolution-card">
     <section class="resolution-section">
-         <div v-if="show" class="edit-resolution">
+         <div v-if="show" class="edit-resolution">   
       <form @submit="editResolution" class="modified-resolution">
+          <div name="edit-header"> <h3 class="edit-title">Edit Your Resolution</h3>
+        <font-awesome-icon icon="window-close" @click="toggleEditForm" class="cancel"/>
+        </div>
+        <input class="form-input" type="text" name="id" :value="resolution.id"/>
+        <input class="form-input" type="text" name="user_id" :value="resolution.user_id"/>
+
         <input class="form-input" type="text" name="image" :value="image"/>
-        <input class="form-input" type="text" name="realm_id" :value="realm"/>
+        <input class="form-input" type="text" name="realm" :value="realm"/>
         <input class="form-input" type="text" name="goal" :value="goal" />
         <textarea class="form-input" name="motivation" :value="motivation"></textarea>
         <input type="submit" class="edit-resolution-button" value="Save Edits"/>
       </form>
+    
       </div>
         <img class="resolution-image" v-bind:src="resolution.image"/>
          <h3>{{resolution.realm.realm}}</h3>
@@ -53,8 +60,19 @@ export default {
           ? this.show = true
           : this.show = false
       },
-        editResolution(resolution){
-            this.$emit("editResolution", resolution)
+        editResolution(event){
+            event.preventDefault()
+            const formData = new FormData(event.target)
+            this.$emit("editResolution", {
+                id: formData.get("id"),
+                goal: formData.get("goal"),
+                motivation: formData.get("motivation"),
+                image: formData.get("image"),
+                realm_id: formData.get("realm"),
+                user_id: formData.get("user_id")
+            })
+            event.target.reset()
+            window.location.reload()
         },
     }
 }
@@ -133,44 +151,85 @@ export default {
     color:white;
 }
 
+.edit-resolution{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+}
+
+.edit-title{
+    padding: 9px;
+    background-color: #33d9b3;
+    color: white;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    font-weight: bold
+}
 
 form{
-  width: 400px;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  background-color: #33d9b3;
+  padding: 15px;
+  border-radius: 5px;
+  
   input{ 
-    display: block;
-    width: 100%;
     margin-bottom: 0.5rem;
     padding: 1rem;
     font-size: 15px;
     border-radius: 5px;
-    border: 1px #474787 solid;
-
+    border: 1px #33d9b3 solid;
   }
   textarea{
     display: block;
-    width: 100%;
     margin-bottom: 0.5rem;
     padding: 1rem;
     font-size: 15px;
     border-radius: 5px;
-    border: 1px #474787 solid;
+    border: 1px #33d9b3 solid;
   }
   .edit-resolution-button{
-    background-color:  #474787;
+    background-color: #474787;
     color: white;
     font-weight: bold;
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 20px;
+    text-align: center;
   }
   .edit-resolution-button:hover{
     background-color: white;
-    color:#474787;
+    color: #474787;
     border: 3px #474787 solid;
     padding: 0.9rem;
     cursor: pointer;
-  
+    text-align: center;
   }
+
 }
+
+.cancel{
+    color:#ff5252;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    float: right;
+    margin-bottom: 5px;
+
+
+}
+
 
 
 </style>

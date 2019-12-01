@@ -8,10 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
+import { faWindowClose} from '@fortawesome/free-solid-svg-icons'
 
 library.add(faEdit)
 library.add(faTrash)
 library.add(faCircle)
+library.add(faWindowClose)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

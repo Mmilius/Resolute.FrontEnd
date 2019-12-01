@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     resolutions: [],
+    reports: [],
   },
   mutations: {
     setResolutions(state, resolutions){
@@ -16,9 +17,16 @@ export default new Vuex.Store({
     },
     deleteResolution(state, id){
       state.resolutions = state.resolutions.splice(id)
-    }
+    },
   },
   actions: {
+    fetchReports({ commit }){
+      fetch("http://localhost:3000/resports/")
+        .then(response => response.json())
+        .then(response => {
+        commit("setReports", response)
+    })
+   },
      fetchResolutions({ commit }){
        fetch("http://localhost:3000/resolutions/")
          .then(response => response.json())
@@ -44,7 +52,18 @@ export default new Vuex.Store({
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(id),
       }).then(commit("deleteResolution", id)
-      )}
+      )},
+
+      editResolution({ commit }, resolution, id){
+        fetch("http://localhost:3000/resolutions/" + id, {
+          method: "PUT",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(resolution),
+      }).then(response => response.json())
+        .then(resolution => {
+          commit("addResolution", resolution)
+        })
+      },
   },
   modules: {
   }

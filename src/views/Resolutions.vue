@@ -13,7 +13,12 @@
       </form>
       </div>
         <!-- <div v-bind:key="resolution.id" v-for="resolution in resolutions"> -->
-        <ResolutionCard v-bind:key="resolution.id" v-for="(resolution) in resolutions" :resolution="resolution" @deleteResolution="deleteResolution"/>
+        <ResolutionCard v-bind:key="resolution.id" 
+        v-for="(resolution) in resolutions" 
+        :resolution="resolution" 
+        @deleteResolution="deleteResolution"
+        @editResolution="editResolution"
+        />
     </div>
     <!-- </div> -->
 </template>
@@ -64,6 +69,11 @@ export default {
       deleteResolution(id){
         this.$store.dispatch("deleteResolution", id)
            window.location.reload()
+      },
+
+      editResolution(resolution){
+        this.$store.dispatch("editResolution", resolution)
+        window.location.reload()
       }
       
   },
