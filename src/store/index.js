@@ -54,8 +54,8 @@ export default new Vuex.Store({
       }).then(commit("deleteResolution", id)
       )},
 
-      editResolution({ commit }, resolution, id){
-        fetch("http://localhost:3000/resolutions/" + id, {
+      editResolution({ commit }, resolution){
+        fetch("http://localhost:3000/resolutions/" + resolution.id, {
           method: "PUT",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify(resolution),

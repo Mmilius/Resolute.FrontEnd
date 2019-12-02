@@ -10,7 +10,7 @@
         <input class="form-input" type="text" name="user_id" :value="resolution.user_id"/>
 
         <input class="form-input" type="text" name="image" :value="image"/>
-        <input class="form-input" type="text" name="realm" :value="realm"/>
+        <input class="form-input" type="text" name="realm_id" :value="realm"/>
         <input class="form-input" type="text" name="goal" :value="goal" />
         <textarea class="form-input" name="motivation" :value="motivation"></textarea>
         <input type="submit" class="edit-resolution-button" value="Save Edits"/>
@@ -68,7 +68,7 @@ export default {
                 goal: formData.get("goal"),
                 motivation: formData.get("motivation"),
                 image: formData.get("image"),
-                realm_id: formData.get("realm"),
+                realm_id: formData.get("realm_id"),
                 user_id: formData.get("user_id")
             })
             event.target.reset()
