@@ -10,7 +10,16 @@
         <input class="form-input" type="text" name="user_id" :value="resolution.user_id"/>
 
         <input class="form-input" type="text" name="image" :value="image"/>
-        <input class="form-input" type="text" name="realm_id" :value="realm"/>
+        <!-- <input class="form-input" type="text" name="realm_id" :value="realm"/> -->
+
+        <select name="realm_id">
+            <option disabled value="">Please select one</option>
+            <option class="form-input" type="text" value="1" >Heart</option>
+            <option class="form-input" type="text" value="2">Mind</option>
+            <option class="form-input" type="text" value="3">Soul</option>
+        </select> 
+
+
         <input class="form-input" type="text" name="goal" :value="goal" />
         <textarea class="form-input" name="motivation" :value="motivation"></textarea>
         <input type="submit" class="edit-resolution-button" value="Save Edits"/>
@@ -48,6 +57,7 @@ export default {
             "motivation": this.resolution.motivation,
             "image": this.resolution.image,
             "realm": this.resolution.realm.realm,
+         
         }
     },
     methods: {
