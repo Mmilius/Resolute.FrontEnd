@@ -1,17 +1,39 @@
 <template>
   <div class="home">
       <form @submit="addUser" class="new-user">
-        <input class="form-input" type="text" placeholder="Email Address" name="email" />
-        <input class="form-input" type="text" placeholder="Password" name="password"/>
+        <input class="form-input" type="text" placeholder="Email Address" name="username" />
+        <input class="form-input" type="password" placeholder="Password" name="password"/>
         <input type="submit" class="add-user-button" value="Sign Up"/>
           <!-- <img class="main-image" alt="resolute" src="../assets/resolute.png"> -->
       </form>
+       <form @submit="login">
+        <input class="form-input" type="text" placeholder="Email Address" name="username" />
+        <input class="form-input" type="password" placeholder="Password" name="password"/>
+        <input type="submit" class="add-user-button" value="Login"/>
+      </form>
   </div>
-
 </template>
 
 <script>
 
+export default {
+  
+data(){
+  return {
+  }
+  },
+ methods: {
+        addUser(event){
+          event.preventDefault()
+          const formData = new FormData(event.target)
+          this.$store.dispatch("addUser", {
+              username: formData.get("username"),
+              password: formData.get("password"),
+          })
+          event.target.reset()
+      },
+ }
+}
 </script>
 
 <style scoped lang="scss">
@@ -19,12 +41,13 @@
   box-sizing: border-box;
 }
 
-form{
+.home{
   background-image: url("../assets/resolute.png");
-   background-repeat: no-repeat;
-   background-position: center;
-   background-size: cover;
-   height: 700px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 700px;
+
+form{
    position: center;
 
   input{ 
@@ -35,6 +58,7 @@ form{
     border-radius: 5px;
     border: 1px #474787 solid;
   }
+}
 }
   .add-user-button{
     background-color:  #474787;

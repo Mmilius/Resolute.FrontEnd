@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     resolutions: [],
     reports: [],
+    users: [],
   },
   mutations: {
     setResolutions(state, resolutions){
@@ -18,8 +19,25 @@ export default new Vuex.Store({
     deleteResolution(state, id){
       state.resolutions = state.resolutions.splice(id)
     },
+    addUser(state, user){
+      state.user = [user, ...state.users]
+    },
   },
   actions: {
+
+    addUser({ commit }, user){
+      fetch("http://localhost:3000/users/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }).then(response => response.json())
+      .then(user => {
+        commit("addUser", user)
+      })
+    },
+
     fetchReports({ commit }){
       fetch("http://localhost:3000/resports/")
         .then(response => response.json())

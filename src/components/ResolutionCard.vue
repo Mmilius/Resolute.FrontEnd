@@ -6,17 +6,17 @@
           <div name="edit-header"> <h3 class="edit-title">Edit Your Resolution</h3>
         <font-awesome-icon icon="window-close" @click="toggleEditForm" class="cancel"/>
         </div>
-        <input class="form-input" type="text" name="id" :value="resolution.id"/>
-        <input class="form-input" type="text" name="user_id" :value="resolution.user_id"/>
+        <input class="form-input" type="hidden" name="id" :value="resolution.id"/>
+        <input class="form-input" type="hidden" name="user_id" :value="resolution.user_id"/>
 
         <input class="form-input" type="text" name="image" :value="image"/>
         <!-- <input class="form-input" type="text" name="realm_id" :value="realm"/> -->
 
-        <select name="realm_id">
-            <option disabled value="">Please select one</option>
-            <option class="form-input" type="text" value="1" >Heart</option>
-            <option class="form-input" type="text" value="2">Mind</option>
-            <option class="form-input" type="text" value="3">Soul</option>
+        <select class="dropdown" name="realm_id">
+            <option class="dropdown-form-input" disabled value="">Please select a realm</option>
+            <option class="dropdown-form-input" type="text" value="1" >Heart</option>
+            <option class="dropdown-form-input" type="text" value="2">Mind</option>
+            <option class="dropdown-form-input" type="text" value="3">Soul</option>
         </select> 
 
 
@@ -238,6 +238,14 @@ form{
     margin-bottom: 5px;
 
 
+}
+
+.dropdown{
+    margin-bottom: 0.5rem;
+    padding: 50px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px #33d9b3 solid;
 }
 
 
