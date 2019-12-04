@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VueRouter from 'vue-router';
 
 Vue.use(Vuex)
 
@@ -8,8 +9,18 @@ export default new Vuex.Store({
     resolutions: [],
     reports: [],
     users: [],
+    accessToken: null,
   },
+
   mutations: {
+    updateAccessToken: (state, accessToken) => {
+      state.accessToken = accessToken;
+    },
+
+    logout: (state) => {
+      state.accessToken = null;
+    },
+
     setResolutions(state, resolutions){
       state.resolutions = resolutions
     },
@@ -23,6 +34,7 @@ export default new Vuex.Store({
       state.user = [user, ...state.users]
     },
   },
+
   actions: {
 
     addUser({ commit }, user){
@@ -38,8 +50,32 @@ export default new Vuex.Store({
       })
     },
 
+    doLogin({ commit }, loginData){
+      fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      }).then(response => response.json())
+      .then(response => {
+        localStorage.setItem("accessToken", response.token);
+        commit("updateAccessToken", response.token);
+      })
+    },
+
+    fetchAccessToken({commit}) {
+      commit("updateAccessToken", localStorage.getItem("accessToken"));
+    },
+
+    logout({commit}){
+      localStorage.removeItem("accessToken");
+      commit("logout");
+      VueRouter.push("/Home")
+    },
+
     fetchReports({ commit }){
-      fetch("http://localhost:3000/resports/")
+      fetch("http://localhost:3000/reports/")
         .then(response => response.json())
         .then(response => {
         commit("setReports", response)

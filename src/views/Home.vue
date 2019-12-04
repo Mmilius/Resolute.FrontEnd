@@ -6,7 +6,7 @@
         <input type="submit" class="add-user-button" value="Sign Up"/>
           <!-- <img class="main-image" alt="resolute" src="../assets/resolute.png"> -->
       </form>
-       <form @submit="login">
+       <form @submit="loginSubmit">
         <input class="form-input" type="text" placeholder="Email Address" name="username" />
         <input class="form-input" type="password" placeholder="Password" name="password"/>
         <input type="submit" class="add-user-button" value="Login"/>
@@ -20,10 +20,13 @@ export default {
   
 data(){
   return {
+    username: "",
+    password: "",
   }
   },
+
  methods: {
-        addUser(event){
+      addUser(event){
           event.preventDefault()
           const formData = new FormData(event.target)
           this.$store.dispatch("addUser", {
@@ -32,6 +35,15 @@ data(){
           })
           event.target.reset()
       },
+      loginSubmit(event){
+        event.preventDefault()
+        const formData = new FormData(event.target)
+        this.$store.dispatch("doLogin", {
+           username: formData.get("username"),
+           password: formData.get("password"),
+        })
+        event.target.reset()
+      }
  }
 }
 </script>

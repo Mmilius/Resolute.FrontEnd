@@ -82,7 +82,7 @@ export default {
                 user_id: formData.get("user_id")
             })
             event.target.reset()
-            window.location.reload()
+            // window.location.reload()
         },
     }
 }
