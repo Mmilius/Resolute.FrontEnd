@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import moment from 'moment'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -16,6 +17,8 @@ library.add(faCircle)
 library.add(faWindowClose)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+Vue.prototype.moment = moment
 
 Vue.config.productionTip = false
 

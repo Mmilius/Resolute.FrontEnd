@@ -45,7 +45,10 @@ export default new Vuex.Store({
     },
     addReport(state, report){
       state.report = [report, ...state.reports]
-    }
+    },
+    deleteReport(state, id){
+      state.reports = state.reports.splice(id)
+    },
   },
 
   actions: {
@@ -160,6 +163,25 @@ export default new Vuex.Store({
           commit("addReport", report)
         })
       },
+
+      deleteReport({ commit }, id){
+        fetch("http://localhost:3000/reports/" + id, {
+          method: "DELETE",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(id),
+        }).then(commit("deleteReport", id)
+        )},
+
+        editReport({ commit }, report){
+          fetch("http://localhost:3000/reports/" + report.id, {
+            method: "PUT",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(report),
+        }).then(response => response.json())
+          .then(report => {
+            commit("addReport", report)
+          })
+        },
   },
   modules: {
   }

@@ -2,6 +2,7 @@
     <div class="report-card">
     <div v-if="show" class="add-report">
       <form @submit="addReport" class="new-report">
+         <h1 class="headline">Make a Report</h1>
         <input class="form-input" type="text" placeholder="What's the status?" name="status" />
         <textarea class="form-input" 
         placeholder="What's been challenging? What's stopping you from acheiving your resolution?" 
@@ -12,7 +13,7 @@
       </form>
     </div>
         <div class="report-cards">
-          <h1>Report Cards</h1>
+          <h1 class="headline">Report Cards</h1>
         <ReportCard v-bind:key="report.id" 
         v-for="(report) in reports" 
         :report="report" 
@@ -122,7 +123,7 @@ form{
 
 .add-report{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .add-report-title{
@@ -136,6 +137,10 @@ form{
 .report-card{
     display: flex;
     justify-content: space-evenly;
+}
+
+.headline{
+  color:#474787;
 }
 
 

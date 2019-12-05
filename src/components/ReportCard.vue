@@ -1,14 +1,32 @@
 <template>
+        <div>
+        <div v-if="show" class="edit-report">   
+      <form @submit="editReport" class="modified-report">
+          <div name="edit-header"> 
+              <h3 class="edit-title">Edit Your Report</h3>
+        <font-awesome-icon icon="window-close" @click="toggleEditForm" class="cancel"/>
+        </div>
+        <input class="form-input" type="hidden" name="id" :value="id"/>
+        <input class="form-input" type="hidden" name="resolution_id" :value="report.resolution_id"/>
+        <input class="form-input" type="text" name="status" :value="status" />
+        <textarea class="form-input" name="challenges" :value="challenges"></textarea>
+         <textarea class="form-input" name="learned" :value="learned"></textarea>
+        <input class="form-input" type="text" name="image" :value="image"/>
+        <input type="submit" class="edit-report-button" value="Save Edits"/>
+      </form>
+      </div>
+
     <div class="report-card">
     <section class="report-section">
         <img class="report-image" v-bind:src="report.image"/>
         <h3>Status: {{report.status}}</h3> 
         <h3>Challenges: {{report.challenges}}</h3>
         <h3>Lessons Learned: {{report.learned}}</h3>
-        <h3>Date: {{report.created_at}}</h3>
+        <h3>Date: {{moment(report.created_at).format('MM-DD-YYYY')}}</h3>
         <font-awesome-icon icon="edit"  @click="toggleEditForm" class="edit-button" />
         <font-awesome-icon icon="trash" @click="deleteReport(report.id)" class="delete-button" />
     </section>
+    </div>
     </div>
 </template>
 
@@ -33,7 +51,7 @@ export default {
     },
     methods: {
         deleteReport(id){
-            if(confirm('Delete this resolution?'))
+            if(confirm('Delete this report?'))
             this.$emit('deleteReport', id)
         },
          toggleEditForm(){
@@ -41,7 +59,20 @@ export default {
           ? this.show = true
           : this.show = false
       },
-      
+         editReport(event){
+            event.preventDefault()
+            const formData = new FormData(event.target)
+            this.$emit("editReport", {
+                status: formData.get("status"),
+                challenges: formData.get("challenges"),
+                learned: formData.get("learned"),
+                image: formData.get("image"),
+                id: formData.get("id"),
+                resolution_id: formData.get("resolution_id")
+            })
+            event.target.reset()
+            window.location.reload()
+        },
     }
 }
 </script>
@@ -134,7 +165,7 @@ form{
     border-radius: 5px;
     border: 1px #33d9b3 solid;
   }
-  .edit-resolution-button{
+  .edit-report-button{
     background-color: #474787;
     color: white;
     font-weight: bold;
@@ -142,7 +173,7 @@ form{
     font-size: 20px;
     text-align: center;
   }
-  .edit-resolution-button:hover{
+  .edit-report-button:hover{
     background-color: white;
     color: #474787;
     border: 3px #474787 solid;

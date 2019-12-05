@@ -25,8 +25,8 @@
         <textarea class="form-input" name="motivation" :value="motivation"></textarea>
         <input type="submit" class="edit-resolution-button" value="Save Edits"/>
       </form>
-    
       </div>
+
         <img class="resolution-image" v-bind:src="resolution.image"/>
          <h3>{{resolution.realm.realm}}</h3>
         <h3>{{resolution.goal}}</h3> 
