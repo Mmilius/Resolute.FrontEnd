@@ -24,6 +24,11 @@ const routes = [
     name: 'Resolutions',
     component: Resolutions
   },
+
+  {
+    path: "*",
+    redirect: "/"
+  }
 ]
 
 const router = new VueRouter({

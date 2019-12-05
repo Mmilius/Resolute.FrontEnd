@@ -58,13 +58,14 @@ data(){
   background-repeat: no-repeat;
   background-size: cover;
   height: 700px;
+  margin-top: 15px;
 
 form{
    position: center;
 
   input{ 
     margin: 5px;
-    margin-top: 80px;
+    margin-top: 50px;
     padding: 1rem;
     font-size: 15px;
     border-radius: 5px;

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import VueRouter from 'vue-router';
+// import VueRouter from 'vue-router';
+import router from '../router';
 
 Vue.use(Vuex)
 
@@ -10,6 +11,7 @@ export default new Vuex.Store({
     reports: [],
     users: [],
     accessToken: null,
+    user_id: null,
   },
 
   mutations: {
@@ -17,10 +19,13 @@ export default new Vuex.Store({
       state.accessToken = accessToken;
     },
 
+    setUser: (state, user_id) => {
+      state.user_id = user_id
+    },
+
     logout: (state) => {
       state.accessToken = null;
     },
-
     setResolutions(state, resolutions){
       state.resolutions = resolutions
     },
@@ -47,7 +52,7 @@ export default new Vuex.Store({
       }).then(response => response.json())
       .then(user => {
         commit("addUser", user)
-      })
+      });router.push("/resolutions")
     },
 
     doLogin({ commit }, loginData){
@@ -60,8 +65,10 @@ export default new Vuex.Store({
       }).then(response => response.json())
       .then(response => {
         localStorage.setItem("accessToken", response.token);
+        localStorage.setItem("setUser", response.user_id)
         commit("updateAccessToken", response.token);
-      })
+        commit("setUser", response.user_id)
+      });router.push("/resolutions")
     },
 
     fetchAccessToken({commit}) {
@@ -70,8 +77,7 @@ export default new Vuex.Store({
 
     logout({commit}){
       localStorage.removeItem("accessToken");
-      commit("logout");
-      VueRouter.push("/Home")
+      commit("logout");router.push("/Home")
     },
 
     fetchReports({ commit }){
@@ -81,13 +87,26 @@ export default new Vuex.Store({
         commit("setReports", response)
     })
    },
-     fetchResolutions({ commit }){
+
+    //  fetchResolutions({ commit }){
+    //   const user = localStorage.getItem("setUser")
+    //    fetch("http://localhost:3000/resolutions/")
+    //     //  .then(response => response.json())
+    //      .then(response.filter(response => response.user_id == user))
+    //      .then(response => {
+    //       commit("setResolutions", response)
+    //      )}
+    // },
+
+    fetchResolutions({ commit }){
        fetch("http://localhost:3000/resolutions/")
          .then(response => response.json())
          .then(response => {
-         commit("setResolutions", response)
-     })
+          commit("setResolutions", response)
+       })
     },
+
+
     addResolution({ commit }, resolution){
       fetch("http://localhost:3000/resolutions/", {
         method: "POST",

@@ -1,6 +1,7 @@
 <template>
     <div>
         <!-- <CreateResolution addResolution/> -->
+    <button class="logout" @click="logout">Logout</button>
     <h3 @click='toggleForm' class="add-resolution-title">Click to Make New Resolution</h3>
     <div v-if="show" class="add-resolution">
       <form @submit="addResolution" class="new-resolution">
@@ -8,7 +9,7 @@
         <textarea class="form-input" placeholder="What's your motivation?" name="motivation"></textarea>
         <input class="form-input" type="text" placeholder="Add a photo" name="image"/>
         <input class="form-input" type="text" placeholder="realm_id" name="realm_id"/>
-        <input class="form-input" type="text" placeholder="user_id" name="user_id"/>
+        <!-- <input class="form-input" type="text" name="user_id" :value="user_id"/> -->
         <input type="submit" class="add-resolution-button" value="Add Resolution"/>
       </form>
       </div>
@@ -42,6 +43,9 @@ export default {
         resolutions(){
             return this.$store.state.resolutions
     },
+    user_id(){
+      return this.$store.state.user_id
+    }
   },
    mounted(){
     this.$store.dispatch("fetchResolutions")
@@ -55,7 +59,8 @@ export default {
               motivation: formData.get("motivation"),
               image: formData.get("image"),
               realm_id: formData.get("realm_id"),
-              user_id: formData.get("user_id")
+              user_id: localStorage.getItem("setUser")
+
           })
           event.target.reset()
           window.location.reload()
@@ -73,7 +78,11 @@ export default {
 
       editResolution(resolution){
         this.$store.dispatch("editResolution", resolution)
-        window.location.reload()
+        // window.location.reload()
+      },
+
+      logout(){
+        this.$store.dispatch("logout")
       }
       
   },
@@ -84,6 +93,27 @@ export default {
 *{
   box-sizing: border-box;
 }
+
+.logout{
+  margin: 15px;
+  background-color:  #474787;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  font-size: 10px;
+  padding: 10px;
+
+}
+
+.logout:hover{
+  background-color: white;
+  color:#474787;
+  border: 1px #474787 solid;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
 form{
   width: 400px;
   input{ 

@@ -3,7 +3,8 @@
     <section class="resolution-section">
          <div v-if="show" class="edit-resolution">   
       <form @submit="editResolution" class="modified-resolution">
-          <div name="edit-header"> <h3 class="edit-title">Edit Your Resolution</h3>
+          <div name="edit-header"> 
+              <h3 class="edit-title">Edit Your Resolution</h3>
         <font-awesome-icon icon="window-close" @click="toggleEditForm" class="cancel"/>
         </div>
         <input class="form-input" type="hidden" name="id" :value="resolution.id"/>
@@ -82,7 +83,7 @@ export default {
                 user_id: formData.get("user_id")
             })
             event.target.reset()
-            // window.location.reload()
+            window.location.reload()
         },
     }
 }
