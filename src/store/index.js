@@ -26,6 +26,11 @@ export default new Vuex.Store({
     logout: (state) => {
       state.accessToken = null;
     },
+
+    setReports(state, reports){
+      state.reports = reports 
+    },
+
     setResolutions(state, resolutions){
       state.resolutions = resolutions
     },
@@ -38,6 +43,9 @@ export default new Vuex.Store({
     addUser(state, user){
       state.user = [user, ...state.users]
     },
+    addReport(state, report){
+      state.report = [report, ...state.reports]
+    }
   },
 
   actions: {
@@ -77,6 +85,8 @@ export default new Vuex.Store({
 
     logout({commit}){
       localStorage.removeItem("accessToken");
+      localStorage.removeItem("resolution");
+      localStorage.removeItem("setUser")
       commit("logout");router.push("/Home")
     },
 
@@ -135,6 +145,19 @@ export default new Vuex.Store({
       }).then(response => response.json())
         .then(resolution => {
           commit("addResolution", resolution)
+        })
+      },
+
+      addReport({ commit }, report){
+        fetch("http://localhost:3000/reports/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(report),
+        }).then(response => response.json())
+        .then(report => {
+          commit("addReport", report)
         })
       },
   },
