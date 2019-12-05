@@ -10,7 +10,7 @@
        <form @submit="loginSubmit">
         <input class="form-input" type="text" placeholder="Email Address" name="username" />
         <input class="form-input" type="password" placeholder="Password" name="password"/>
-        <input type="submit" class="add-user-button" value="Login"/>
+        <input type="submit" class="login-button" value="Login"/>
       </form>
   </div>
 </template>
@@ -63,7 +63,7 @@ data(){
   background-image: url("../assets/resolute.png");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 700px;
+  height: 900px;
   margin-top: 15px;
 
 form{
@@ -90,9 +90,28 @@ form{
     background-color: white;
     color:#474787;
     border: 3px #474787 solid;
-    padding: 0.9rem;
+    padding: 0.85rem;
     cursor: pointer;
   }
+
+  .login-button{
+    background-color:  #474787;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+
+  .login-button:hover{
+    background-color: white;
+    color:#474787;
+    border: 3px #474787 solid;
+    padding: 0.88rem;
+    cursor: pointer;
+  }
+
+
+
   
   .main-image{
     width: 100%;

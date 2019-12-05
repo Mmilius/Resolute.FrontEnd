@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="body">
         <!-- <CreateResolution addResolution/> -->
     <h3 class="logout" @click="logout">Logout</h3>
     <h3 @click='toggleForm' class="add-resolution-title">Click to Make New Resolution</h3>
@@ -108,7 +108,12 @@ export default {
 *{
   box-sizing: border-box;
 }
-
+.body{
+background-image: url("../assets/blob.png");
+background-repeat: no-repeat;
+margin-top: 15px;
+background-size: 55%;
+}
 
 form{
   width: 400px;
@@ -183,4 +188,8 @@ form{
   color: #474787;
   cursor: pointer;
 }
+  .logout:hover{
+    color: #9e5af8;
+  }
+
 </style>

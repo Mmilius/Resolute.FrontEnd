@@ -148,6 +148,9 @@ form{
 .report-card{
     display: flex;
     justify-content: space-evenly;
+    background-image: url("../assets/rings.png");
+    background-repeat: no-repeat;
+    background-size: 90%;
 }
 
 .headline{
@@ -159,6 +162,10 @@ form{
   color: #474787;
   cursor: pointer;
 }
+
+ .backtrack:hover{
+    color: #9e5af8;
+  }
 
 
 </style>

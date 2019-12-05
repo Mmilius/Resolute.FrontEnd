@@ -83,6 +83,9 @@ export default {
 
 .report-image{
     width: 150px;
+    background-color: #9e5af8;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 
@@ -212,7 +215,8 @@ form{
     padding: 15px;
     border-radius: 5px;
     font-family: 'Noto Sans SC', sans-serif;
-    width: 100%
+    width: 100%;
+    background-color: white;
 
 }
 

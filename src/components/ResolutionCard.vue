@@ -28,8 +28,8 @@
       </div>
 
         <img class="resolution-image" v-bind:src="resolution.image"/>
-         <h3>{{resolution.realm.realm}}</h3>
-        <h3>{{resolution.goal}}</h3> 
+         <h3>Realm: {{resolution.realm.realm}}</h3>
+        <h3>Goal: {{resolution.goal}}</h3> 
         <h3>My motivation: {{resolution.motivation}}</h3>
         <button @click="$emit('report-resolution', id)" class="report-button">Make a Report</button>
         <br>
@@ -91,8 +91,13 @@ export default {
 
 <style scoped lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC&display=swap');
+
 .resolution-image{
-    width: 150px;
+    width: 20%;
+    background-color: #9e5af8;
+    padding: 20px;
+    border-radius: 5px;
+
 }
 
 .resolution-section{
@@ -103,6 +108,7 @@ export default {
     padding: 15px;
     border-radius: 5px;
     font-family: 'Noto Sans SC', sans-serif;
+    background-color: white;
 }
 
 /* h3{
