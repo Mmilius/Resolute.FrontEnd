@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <h3 class="about" @click="backtrack">Learn More Here</h3>
       <form @submit="addUser" class="new-user">
         <input class="form-input" type="text" placeholder="Email Address" name="username" />
         <input class="form-input" type="password" placeholder="Password" name="password"/>
@@ -15,6 +16,8 @@
 </template>
 
 <script>
+
+import router from '../router';
 
 export default {
   
@@ -43,6 +46,9 @@ data(){
            password: formData.get("password"),
         })
         event.target.reset()
+      },
+        backtrack(){
+        router.push("/about")
       }
  }
 }
@@ -93,6 +99,23 @@ form{
     position: center;
 
   }
+
+  .about{
+  color: white;
+  cursor: pointer;
+  margin-bottom: -20px;
+  padding: 15px;
+  background-color: #9e5af8;
+  }
+
+  .about:hover{
+    background-color: white;
+    color: #9e5af8;
+     border: 5px #9e5af8 solid;
+     padding: 10px;
+  }
+
+
 
   
 </style>

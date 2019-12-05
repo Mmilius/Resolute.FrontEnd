@@ -25,6 +25,8 @@ export default new Vuex.Store({
 
     logout: (state) => {
       state.accessToken = null;
+      state.user_id = null;
+      state.setUser = null;
     },
 
     setReports(state, reports){

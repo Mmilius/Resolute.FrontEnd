@@ -1,4 +1,6 @@
 <template>
+<div>
+  <h3 class="backtrack" @click="backtrack"> Return to Resolutions</h3> 
     <div class="report-card">
     <div v-if="show" class="add-report">
       <form @submit="addReport" class="new-report">
@@ -22,6 +24,7 @@
         />
         </div>
     </div>
+    </div>
 
 </template>
 
@@ -29,6 +32,8 @@
 <script>
 
 import ReportCard from '../components/ReportCard.vue';
+
+import router from '../router';
 
 export default {
     data(){
@@ -72,6 +77,12 @@ export default {
         this.$store.dispatch("editReport", report)
         // window.location.reload()
       },
+       logout(){
+        this.$store.dispatch("logout")
+      },
+      backtrack(){
+        router.push("/resolutions")
+      }
   }
 }
 
@@ -141,6 +152,12 @@ form{
 
 .headline{
   color:#474787;
+}
+
+.backtrack{
+  margin-top: -5px;
+  color: #474787;
+  cursor: pointer;
 }
 
 

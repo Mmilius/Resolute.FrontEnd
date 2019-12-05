@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- <CreateResolution addResolution/> -->
-    <button class="logout" @click="logout">Logout</button>
+    <h3 class="logout" @click="logout">Logout</h3>
     <h3 @click='toggleForm' class="add-resolution-title">Click to Make New Resolution</h3>
     <div v-if="show" class="add-resolution">
       <form @submit="addResolution" class="new-resolution">
@@ -109,25 +109,6 @@ export default {
   box-sizing: border-box;
 }
 
-.logout{
-  margin: 15px;
-  background-color:  #474787;
-  color: white;
-  font-weight: bold;
-  border-radius: 5px;
-  font-size: 10px;
-  padding: 10px;
-
-}
-
-.logout:hover{
-  background-color: white;
-  color:#474787;
-  border: 1px #474787 solid;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-}
 
 form{
   width: 400px;
@@ -195,5 +176,11 @@ form{
     border-radius: 5px;
     padding: 2px;
     cursor: pointer;
+}
+
+.logout{
+  margin-top: -5px;
+  color: #474787;
+  cursor: pointer;
 }
 </style>

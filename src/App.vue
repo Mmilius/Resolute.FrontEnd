@@ -2,10 +2,7 @@
   <div id="app">
     <Header />
     <div id="nav">
-      
-      <!-- <router-link to="/">Home</router-link> | -->
-    <router-link to="/about">About</router-link> 
-    
+    <!-- <router-link to="/about">About</router-link>  -->
     </div>
     <router-view></router-view>
   </div>
@@ -18,6 +15,13 @@ export default {
   name: 'App',
   components: {
     Header,
+}, 
+methods: {
+
+
+  logout(){
+        this.$store.dispatch("logout")
+      },
 }
 }
 
@@ -37,10 +41,7 @@ export default {
       padding: 10px;
       margin: 20px;
       border-radius: 3px}
-    a:hover{
-      background-color:#474787;
-      color: white;
-      }
+  
 }
 
 
@@ -52,9 +53,6 @@ export default {
  margin: 20px;
  border-radius: 3px
 }
-#nav a:hover{
-  background-color:#474787;
-  color: white;
-}
+
 
 </style>
